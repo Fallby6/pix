@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copiar chave PIX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #a9b307, #c8a51d, #efbb07, #c8a51d, #a9b307);
+      background-size: 400% 400%;
+      animation: gradientMove 08s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      transition: transform 0.3s;
+    }
+
+    h1 {
+      color: #3e2723;
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: 600;
+      background-color: #8d6e63;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #6d4c41;
+      transform: scale(1.05);
+    }
+
+    .feedback {
+      margin-top: 16px;
+      color: green;
+      font-weight: 500;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Clique no botão para copiar a chave PIX</h1>
+    <button onclick="copiarChave()">Copiar</button>
+    <div class="feedback" id="feedbackMsg">Copiado! ✅</div>
+  </div>
+
+  <script>
+    function copiarChave() {
+      const chave = `00020101021126330014br.gov.bcb.pix0111069673851195204000053039865802BR5925GUSTAVO DA SILVA CORDEIRO6008BRASILIA62090505Teste63042BD2`;
+      navigator.clipboard.writeText(chave).then(() => {
+        const msg = document.getElementById('feedbackMsg');
+        msg.style.display = 'block';
+        setTimeout(() => {
+          msg.style.display = 'none';
+        }, 3000);
+      }, (err) => {
+        alert("Erro ao copiar: " + err);
+      });
+    }
+  </script>
+</body>
+</html>
